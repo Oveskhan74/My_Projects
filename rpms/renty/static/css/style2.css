@@ -1,0 +1,654 @@
+/*================================= Fonts ========================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Oswald:wght@300;400;500;600&family=Roboto+Slab:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+
+:root {
+    --primary: #510fea;
+    --secondary: #FF6922;
+    --light: #EFFDF5;
+    --dark: #235e9d;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+body {
+    background-color: #000000;
+}
+
+/*** Button ***/
+.btn {
+    transition: .5s;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 50px;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+/*** Navbar ***/
+.nav-bar {
+    position: relative;
+    transition: .5s;
+    z-index: 9999;
+}
+
+.nav-bar.sticky-top {
+    position: sticky;
+    padding: 0;
+    z-index: 9999;
+}
+
+.navbar {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 5px;
+    transition: .5s;
+}
+
+.navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .nav-bar {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+
+    .navbar-light .navbar-nav {
+        border-top: 1px solid #EEEEEE;
+    }
+}
+
+.navbar-light .navbar-brand {
+    height: 75px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        top: 100%;
+        margin-top: 0;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        transform: rotateX(0deg);
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+
+/*** Header ***/
+@media (min-width: 992px) {
+    .header {
+        margin-top: -120px;
+    }
+}
+
+.header-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+    margin: 7px 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.header-carousel .owl-nav .owl-prev:hover,
+.header-carousel .owl-nav .owl-next:hover {
+    background-color: var(--primary);
+}
+
+.header-carousel .owl-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-carousel .owl-dots .owl-dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color .5s;
+}
+
+.header-carousel .owl-dots .owl-dot.active {
+    background-color: var(--primary);
+}
+
+.header-content {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.header-content h1 {
+    font-size: 55px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.header-content h2 {
+    font-size: 30px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.header-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+}
+
+.header-btn {
+    margin-top: 30px;
+}
+
+/*========================== End of Header =====================================*/
+
+/*========================== About Section =====================================*/
+.about {
+    padding: 70px 0;
+}
+
+.about h2 {
+    font-size: 36px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+}
+
+.about-img {
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    transition: .5s;
+}
+
+.about-img img:hover {
+    transform: scale(1.1);
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-item {
+    margin-bottom: 30px;
+}
+
+.about-item i {
+    font-size: 30px;
+    color: var(--primary);
+    margin-bottom: 15px;
+    transition: .5s;
+}
+
+.about-item h3 {
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.about-item p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 0;
+}
+
+.about-item:hover i {
+    color: var(--secondary);
+}
+
+/*========================== End of About Section ==============================*/
+
+/*========================== Services Section ==================================*/
+.services {
+    background-color: #F8F9FA;
+    padding: 70px 0;
+}
+
+.services h2 {
+    font-size: 36px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.service-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-item i {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.service-item p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 0;
+}
+
+/*========================== End of Services Section ===========================*/
+
+/*========================== Portfolio Section =================================*/
+.portfolio {
+    padding: 70px 0;
+}
+
+.portfolio h2 {
+    font-size: 36px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.portfolio-filter {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.portfolio-filter button {
+    font-size: 16px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    color: var(--dark);
+    background-color: transparent;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.portfolio-filter button:hover,
+.portfolio-filter button.active {
+    color: var(--primary);
+}
+
+.portfolio-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: .5s;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+}
+
+.portfolio-overlay i {
+    font-size: 30px;
+    color: var(--primary);
+    transition: .5s;
+}
+
+.portfolio-overlay h3 {
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    margin: 0;
+}
+
+.portfolio-overlay p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/*========================== End of Portfolio Section ==========================*/
+
+/*========================== Testimonials Section ==============================*/
+.testimonials {
+    background-color: #F8F9FA;
+    padding: 70px 0;
+}
+
+.testimonials h2 {
+    font-size: 36px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.testimonial-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.testimonial-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.testimonial-item h3 {
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.testimonial-item p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 0;
+}
+
+/*========================== End of Testimonials Section ============================*/
+
+/*========================== Team Section =======================================*/
+.team {
+padding: 70px 0;
+}
+
+.team h2 {
+font-size: 36px;
+font-family: "Rubik", sans-serif;
+font-weight: 700;
+margin-bottom: 40px;
+text-align: center;
+}
+
+.team-member {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.team-member img {
+width: 100%;
+height: auto;
+border-radius: 6px;
+transition: .5s;
+}
+
+.team-member img:hover {
+transform: scale(1.1);
+}
+
+.team-member h3 {
+font-size: 18px;
+font-family: "Rubik", sans-serif;
+font-weight: 500;
+margin-bottom: 15px;
+}
+
+.team-member p {
+font-size: 15px;
+line-height: 1.75;
+margin-bottom: 0;
+}
+
+/*========================== End of Team Section ================================*/
+
+/*========================== Contact Section ====================================*/
+.contact {
+background-color: #F8F9FA;
+padding: 70px 0;
+}
+
+.contact h2 {
+font-size: 36px;
+font-family: "Rubik", sans-serif;
+font-weight: 700;
+margin-bottom: 40px;
+text-align: center;
+}
+
+.contact-form {
+max-width: 600px;
+margin: 0 auto;
+}
+
+.contact-form form {
+display: flex;
+flex-direction: column;
+}
+
+.contact-form label {
+font-size: 16px;
+font-family: "Rubik", sans-serif;
+font-weight: 500;
+margin-bottom: 8px;
+color: var(--dark);
+}
+
+.contact-form input,
+.contact-form textarea {
+margin-bottom: 20px;
+padding: 15px;
+font-size: 16px;
+font-family: "Rubik", sans-serif;
+font-weight: 400;
+color: var(--dark);
+background-color: #FFFFFF;
+border: 1px solid #DDDDDD;
+border-radius: 6px;
+transition: .5s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+outline: none;
+border-color: var(--primary);
+}
+
+.contact-form textarea {
+resize: vertical;
+}
+
+.contact-form button {
+padding: 15px 25px;
+font-size: 16px;
+font-family: "Rubik", sans-serif;
+font-weight: 500;
+color: #FFFFFF;
+background-color: var(--primary);
+border: none;
+border-radius: 6px;
+cursor: pointer;
+transition: .5s;
+}
+
+.contact-form button:hover {
+background-color: var(--secondary);
+}
+
+/*========================== End of Contact Section =============================*/
+
+/*========================== Footer ===========================================*/
+.footer {
+background-color: var(--dark);
+padding: 50px 0;
+color: #FFFFFF;
+}
+
+.footer-logo img {
+max-width: 120px;
+margin-bottom: 20px;
+}
+
+.footer-logo img:hover {
+opacity: 0.8;
+}
+
+.footer-about p {
+font-size: 16px;
+line-height: 1.75;
+margin-bottom: 30px;
+}
+
+.footer-contact-info {
+margin-bottom: 30px;
+}
+
+.footer-contact-info i {
+font-size: 30px;
+color: var(--primary);
+margin-right: 10px;
+}
+
+.footer-contact-info span {
+font-size: 16px;
+line-height: 1.75;
+margin-bottom: 20px;
+display: block;
+}
+
+.footer-social {
+margin-top: 20px;
+}
+
+.footer-social a {
+display: inline-block;
+margin-right: 15px;
+font-size: 20px;
+color: #FFFFFF;
+}
+
+.footer-social a:hover {
+color: var(--primary);
+}
+
+/*========================== End of Footer =====================================*/

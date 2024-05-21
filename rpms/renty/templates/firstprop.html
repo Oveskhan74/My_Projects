@@ -1,0 +1,404 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Renty.com</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- font -->
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Favicon -->
+    <link href="{% static "img/favicon.ico" %}" rel="icon">
+
+    <!--- font-awesome icons -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style4.css' %}" rel="stylesheet">
+
+
+    
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="{% static 'img\icon-housing.png' %}" alt="Icon"
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">Renty.com</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <a href="/#developer" class="nav-item nav-link">About</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link " data-bs-toggle="dropdown">Property</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url "all_property" %}" class="dropdown-item">Property List</a>
+                                <a href=" /#propertytype" class="dropdown-item">Property Type</a>
+                                {% comment %} <a href="#propertyagent" class="dropdown-item">Property Agent</a> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link " data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url "terms_Conditions" %}" class="dropdown-item">Terms & Conditions</a>
+                                {% comment %} <a href="#" class="dropdown-item">404 Error</a> {% endcomment %}
+                            </div>
+                        </div>
+                        <a href="{% url "conpage" %}" class="nav-item nav-link">Contact</a>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                    <div class="profile-dropdown">
+                        <div onclick="toggle()"     class="user-info d-flex align-items-center">
+                            <div class="profile-img">
+                                <i class="fa-solid fa-circle"><img src="{{request.user.profile.image.url}}"></i>
+                            </div>
+
+                            <span>{{request.user}}
+                                <i class="fa-solid fa-angle-down"></i>
+                            </span>
+                        </div>
+
+                        <ul class="profile-dropdown-list">
+
+                            <li class="profile-dropdown-list-item">
+                                <a href="{% url "addprop_page" %}">
+                                    <i class="fa-solid fa-sliders"></i>
+                                    Add Properties
+                                </a>
+                            </li>
+
+                            <li class="profile-dropdown-list-item">
+                                <a href="{% url "conpage" %}">
+                                    <i class="fa-regular fa-circle-question"></i>
+                                    Help & Support
+                                </a>
+                            </li>
+                            <hr />
+
+                            <li class="profile-dropdown-list-item">
+                                <a href="{% url "user_logout" %}">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                        {% comment %} <a href="{% url 'user_logout' %}" class="btn btn-primary px-3 d-none d-lg-flex">Logout</a> {% endcomment %}
+                    {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+<section class="py-5">
+    <div class="container">
+      <div class="row gx-5">
+        <aside class="col-lg-6">
+          {% comment %} <div class="border rounded-4 mb-3 d-flex justify-content-center img-display img-showcase"> {% endcomment %}
+            {% comment %} <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="{{prop.prop_img.url}}"> {% endcomment %}
+              {% comment %} <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit img-showcase" src="{{prop.prop_img.url}}" />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center mb-3  ">
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="{{prop.prop_img.url}}" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{prop.prop_img.url}}" />
+            </a>
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="{{prop.prop_img.url}}" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{prop.prop_img.url}}" />
+            </a>
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="{{prop.prop_img.url}}" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{prop.prop_img.url}}" />
+            </a>
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="{{prop.prop_img.url}}" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{prop.prop_img.url}}" />
+            </a>
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="{{prop.prop_img.url}}" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{prop.prop_img.url}}" />
+            </a>
+          </div> {% endcomment %}
+          <div class="propertyinfo-imgs">
+            <div class="img-display">
+                <div class="img-showcase">
+                    <img src="{% static "img/1st-1.jpg" %}" alt="property image" class="img-showcase">
+                    <img src="{% static "img/1st-2.jpg" %}" alt="property image" class="img-showcase">
+                    <img src="{% static "img/1st-3.jpg" %}" alt="property image" class="img-showcase">
+                    <img src="{% static "img/1st-4.jpg" %}" alt="property image" class="img-showcase">
+
+                </div>
+            </div>
+            <div class="img-select">
+                <div class="img-item">
+                    <a href="#" data-id="1">
+                        <img src="{% static "img/1st-1(1).jpg" %}" alt="property image"
+                            class="image-property">
+                    </a>
+                </div>
+                <div class="img-item">
+                    <a href="#" data-id="2">
+                        <img src="{% static "img/1st-2.jpg" %}" alt="property image"
+                            class="image-property">
+                        
+                    </a>
+                </div>
+                <div class="img-item">
+                    <a href="#" data-id="3">
+                        <img src="{% static "img/1st-3.jpg" %}" alt="property image"
+                            class="image-property">
+                    </a>
+                </div>
+                <div class="img-item">
+                    <a href="#" data-id="4">
+                        <img src="{% static "img/1st-4.jpg" %}" alt="property image"
+                            class="image-property">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+          <!-- thumbs-wrap.// -->
+          <!-- gallery-wrap .end// -->
+        </aside>
+        <main class="col-lg-6">
+          <div class="ps-lg-3">
+            <h4 class="title text-light">
+                 Sindhu Bhavan , Ahemdabad.
+            </h4>
+            
+             
+            </div>
+  
+            <div class="mb-3">
+              <span class="h5">₹ 50000</span>
+              <span class="text-muted">/per month</span>
+            </div>
+  
+            <p>
+                Welcome to the Ahemdabad, a villa owned by Harsh. This cozy home features a comfortable living area spanning 8000 square feet, offering a perfect blend of charm and functionality. 
+
+            </p>
+  
+            <div class="row">
+                <span class="h5"> Specifications</span>
+            <hr />
+              <dt class="col-3">Type:</dt>
+              <dd class="col-9">villa</dd>
+  
+              <dt class="col-3">Area:</dt>
+              <dd class="col-9">8000 sq.ft</dd>
+  
+              <dt class="col-3">Floors:</dt>
+              <dd class="col-9">2</dd>
+  
+              <dt class="col-3">BHK:</dt>
+              <dd class="col-9">7</dd>
+
+              <dt class="col-3">Tenant:</dt>
+              <dd class="col-9">Family</dd>
+
+              <dt class="col-3">City:</dt>
+              <dd class="col-9">Ahemdabad</dd>
+              
+              <dt class="col-3">Owner:</dt>
+              <dd class="col-9">Harsh</dd>
+            </div>
+  
+            <hr />
+  
+            
+            {% comment %} <button href="#" class="btn" > Rent </button> {% endcomment %}
+            
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Gandhinagar,Gujarat</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+919898767100</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>renty@email.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="bttn btn-link text-white-50" href="">About Us</a>
+                <a class="bttn btn-link text-white-50" href="contact.html">Contact
+                    Us</a>
+                <a class="bttn btn-link text-white-50" href="">Our Services</a>
+                <a class="bttn btn-link text-white-50" href="">Privacy Policy</a>
+                <a class="bttn btn-link text-white-50" href="">Terms & Condition</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Photo Gallery</h5>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-1.jpg" %}" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-2.jpg" %}" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-3.jpg" %}" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-4.jpg" %}" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-5.jpg" %}" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="{% static "img/property-6.jpg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Newsletter</h5>
+                <p>If any problem then please contact us.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
+                        placeholder="Your email">
+                    <button type="button"
+                        class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="/">Renty.com</a>, All Right Reserved.
+
+
+                    Designed By <a class="border-bottom" href="/">Renty.com</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="/">Home</a>
+                        <a href="">Cookies</a>
+                        <a href="/contact">Help</a>
+                        <a href="">FQAs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+<script src="{% static "lib/wow/wow.min.js" %}"></script>
+<script src="{% static "lib/easing/easing.min.js" %}"></script>
+<script src="{% static "lib/waypoints/waypoints.min.js" %}"></script>
+<script src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
+
+
+
+
+<!--dropdown-->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<!-- Template Javascript -->
+<script src="{% static "js/main.js" %}"></script>
+
+
+<!-- dropdown Javascript -->
+<script>
+let profileDropdownList = document.querySelector(".profile-dropdown-list");
+let btn3 = document.querySelector(".profile-dropdown-btn");
+
+let classList = profileDropdownList.classList;
+
+const toggle = () => classList.toggle("active");
+
+window.addEventListener("click", function (e) {
+    if (!btn3.contains(e.target)) classList.remove("active");
+});
+</script>
+
+
+
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage() {
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+    window.addEventListener('resize', slideImage);
+</script>
+</body>
+
+</html>
